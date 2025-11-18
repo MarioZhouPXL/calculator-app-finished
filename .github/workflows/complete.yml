@@ -19,9 +19,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Bundle app
-        run: zip -r build.zip ./* node_modules
-
       - name: Run tests and generate coverage
         run: npm test -- --coverage
 
@@ -30,4 +27,11 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           coverage-file: ./coverage/clover.xml
-          working-directory: ./  
+          working-directory: ./ 
+
+      - name: Bundle app
+        run: |
+          tar -czf build.tar.gz package.json package-lock.json src/ node_modules/
+
+      - name: List bundled files
+        run: tar -tzf build.tar.gz
