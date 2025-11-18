@@ -21,6 +21,16 @@ jobs:
 
       - name: Bundle app
         run: zip -r build.zip ./* node_modules
-        
-      - name: List directories
-        run: ls -alhR
+
+      - name: Run tests and create report
+        run: |
+          npm test -- --reporter junit --reporter-options mochaFile=reports/test-results.xml
+        continue-on-error: true
+
+ 
+      - name: Upload test report
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-report
+          path: reports/test-results.xml
+
