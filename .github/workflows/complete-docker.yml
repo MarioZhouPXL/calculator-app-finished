@@ -46,4 +46,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: user/app:latest
+          tags: mariozhou06/calculator:latest
