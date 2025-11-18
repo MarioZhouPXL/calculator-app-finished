@@ -22,8 +22,12 @@ jobs:
       - name: Bundle app
         run: zip -r build.zip ./* node_modules
 
-      - name: Build the code
-        run: npm install && rm -f build.zip && zip -r build.zip *.js Dockerfile docker-compose.yml .dockerignore public/ node_modules/
+      - name: Run tests and generate coverage
+        run: npm test -- --coverage
 
       - name: Better Test Reports Action
         uses: mridang/action-test-reporter@v1.7.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          coverage-file: ./coverage/clover.xml
+          working-directory: ./  
