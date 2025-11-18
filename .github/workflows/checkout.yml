@@ -1,0 +1,15 @@
+name: Checkout Example
+
+on:
+  push:
+    branches:
+     - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6-beta
+        run: ls -alhR
