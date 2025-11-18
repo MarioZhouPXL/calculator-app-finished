@@ -37,4 +37,5 @@ jobs:
       - name: Scan Docker image for CVEs
         uses: docker/scout-action@v1
         with:
+          command: "scan"
           image: ${{ secrets.DOCKERHUB_USERNAME }}/calculator:latest
