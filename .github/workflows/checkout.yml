@@ -12,4 +12,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6-beta
+        
+      - name: List contents of directories  
         run: ls -alhR
