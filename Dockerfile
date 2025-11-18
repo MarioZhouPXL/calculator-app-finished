@@ -1,9 +1,20 @@
-FROM node:14
-WORKDIR /usr/src/app
+# Gebruik Node.js base image
+FROM node:20-alpine
 
+# Zet werkdirectory
+WORKDIR /app
+
+# Kopieer package.json en package-lock.json
+COPY package*.json ./
+
+# Installeer dependencies
+RUN npm install --production
+
+# Kopieer rest van de code
 COPY . .
-RUN npm install
 
-EXPOSE 8080
+# Stel poort in (pas aan indien nodig)
+EXPOSE 3000
 
-CMD ["npm","start"]
+# Start applicatie
+CMD ["node", "index.js"]
