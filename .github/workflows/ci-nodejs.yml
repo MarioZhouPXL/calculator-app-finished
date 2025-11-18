@@ -16,7 +16,7 @@ jobs:
     steps:
       # 1️⃣ Checkout repository
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v6-beta
 
       # 2️⃣ Install Node.js
       - name: Setup Node.js
@@ -33,10 +33,10 @@ jobs:
         run: npm test -- --coverage
 
       # 5️⃣ Upload test results as artifact
-      - name: Upload test results
-        uses: actions/upload-artifact@v3
+
+      - name: Better Test Reports Action
+        uses: mridang/action-test-reporter@v1.7.0
         with:
-          name: test-results
-          path: |
-            coverage
-            test-results.xml
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          coverage-file: ./coverage/clover.xml
+          working-directory: ./ 
