@@ -32,7 +32,7 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/calculator:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/calculator:${{ github.ref_name }}
-
+          load: true
       # 5️⃣ Scan image for CVEs
       - name: Scan Docker image for CVEs
         uses: docker/scout-action@v1
