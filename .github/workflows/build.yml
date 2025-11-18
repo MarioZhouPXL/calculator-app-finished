@@ -1,4 +1,4 @@
-name: Dependencies Example
+name: Build Example
 
 on:
   workflow_dispatch:
@@ -16,5 +16,11 @@ jobs:
         with:
           node-version: '20.x'
 
+      - name: Install dependencies
+        run: npm install
+
+      - name: Bundle app
+        run: zip -r build.zip ./* node_modules
+        
       - name: List directories
         run: ls -alhR
