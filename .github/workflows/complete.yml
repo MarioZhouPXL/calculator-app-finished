@@ -31,7 +31,7 @@ jobs:
 
       - name: Bundle app
         run: |
-          tar --exclude=".git" --exclude=".github" -czf build.tar.gz . node_modules
+          tar --warning=no-file-changed -czf build.tar.gz package.json package-lock.json node_modules
 
       - name: List bundled files
         run: tar -tzf build.tar.gz
