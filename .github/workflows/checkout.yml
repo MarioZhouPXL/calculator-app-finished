@@ -15,6 +15,3 @@ jobs:
         
       - name: List contents of directories  
         run: ls -alhR
-        
-      - name: Better Test Reports Action
-        uses: mridang/action-test-reporter@v1.7.0
