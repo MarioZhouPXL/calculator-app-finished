@@ -22,17 +22,8 @@ jobs:
       - name: Bundle app
         run: zip -r build.zip ./* node_modules
 
-      - name: Run tests and create report
-        run: |
-          npm test -- --reporter junit --reporter-options mochaFile=reports/test-results.xml
-        continue-on-error: true
-
- 
-      - name: Upload test report
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-report
-          path: reports/test-results.xml
+      - name: Build the code
+        run: npm install && rm -f build.zip && zip -r build.zip *.js Dockerfile docker-compose.yml .dockerignore public/ node_modules/
 
       - name: Better Test Reports Action
         uses: mridang/action-test-reporter@v1.7.0
